@@ -8,6 +8,7 @@ from gdata.service import BadAuthentication
 import gdata.apps.groups.client
 
 from models import *
+import re
 
 logging.debug('GoogleAppsBackend')
 
@@ -17,7 +18,11 @@ class GoogleAppsBackend:
     def authenticate(self, username=None, password=None):
         import gdata
         # Remove non breaking space that causes errors
+        # You can still break the password though with some unicode characters. Not sure what is valid.
         password = unicode(password).replace(u'\xa0',u'')
+        # Google doesn't support unicode in usernames http://support.google.com/a/bin/answer.py?hl=en&answer=33386
+        # Remove all but allowed characters. This helps people who copy and paste silly things like line breaks.
+        username = re.sub("[^a-zA-Z0-9_\-.]","", unicode(username))
         logging.debug('GoogleAppsBackend.authenticate: %s - %s' % (username, '*' * len(password)))
         admin_email = '%s@%s' % (settings.GAPPS_USERNAME, settings.GAPPS_DOMAIN)
         email = '%s@%s' % (username, settings.GAPPS_DOMAIN)
