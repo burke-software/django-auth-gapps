@@ -10,12 +10,15 @@ pip install django-auth-gapps
 
 In settings.py
 
+```
 GAPPS_DOMAIN = 'mydomain.com'
 GAPPS_USERNAME = ''  # Just the username, no @
 GAPPS_PASSWORD = ''
 # Check for new groups, or only on initial user creation
 GAPPS_ALWAY_ADD_GROUPS = False
 AUTHENTICATION_BACKENDS += ('google_auth.backends.GoogleAppsBackend',)
+```
+
 Add 'google_auth' to installed_apps
 
 Add to urls.py patterns('', (r'^accounts/login/$', 'google_auth.views.login'), )
