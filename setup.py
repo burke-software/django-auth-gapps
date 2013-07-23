@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = "django-auth-gapps",
-    version = ".1",
+    version = "1.0",
     author = "David Burke",
     author_email = "david@burkesoftware.com",
     description = ("Authentication with Google Apps Provisioning api"),
@@ -12,7 +12,7 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     classifiers=[
-        "Development Status :: 4 - Beta",
+        "Development Status :: 5 - Stable",
         'Environment :: Web Environment',
         'Framework :: Django',
         'Programming Language :: Python',
@@ -20,4 +20,5 @@ setup(
         'Intended Audience :: System Administrators',
         "License :: OSI Approved :: BSD License",
     ],
+    install_requires=['gdata']
 )
